@@ -13,7 +13,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-// TODO: check if this file has to be moved to di package or not
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
