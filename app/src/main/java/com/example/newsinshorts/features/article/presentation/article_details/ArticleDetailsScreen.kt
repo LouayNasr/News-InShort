@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -23,14 +22,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import coil3.compose.AsyncImage
 import com.example.newsinshorts.R
-import com.example.newsinshorts.core.presentation.UiText
 import com.example.newsinshorts.features.article.domain.model.Article
+import com.example.newsinshorts.features.article.presentation.components.ErrorScreen
+import com.example.newsinshorts.features.article.presentation.components.LoadingScreen
 import java.time.LocalDateTime
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -50,6 +49,22 @@ fun ArticleDetailsScreen(
     ) { paddingValues ->
         val state = viewModel.state
 
+        when {
+
+            state.isLoading -> LoadingScreen(modifier = Modifier.padding(paddingValues))
+            state.errorMessage != null -> ErrorScreen(
+                state.errorMessage.toString(),
+                onRetry = { },
+                modifier = Modifier.padding(paddingValues),
+            )
+
+            else -> {
+                ArticleDetailsScreenContent(
+                    state = state,
+                    modifier = Modifier.padding(paddingValues)
+                )
+            }
+        }
         ArticleDetailsScreenContent(
             state = state,
             modifier = Modifier
@@ -102,36 +117,21 @@ fun ArticleDetailsScreenContent(
                 )
             }
         }
-        if (state.isLoading) {
-            CircularProgressIndicator(
-                modifier = Modifier.align(Alignment.Center)
-            )
-        }
-        state.errorMessage?.let {
-            Text(
-                text = it.toString(),
-                textAlign = TextAlign.Center,
-                color = Color.Red,
-                modifier = Modifier.align(Alignment.Center)
-            )
-
-        }
+//        if (state.isLoading) {
+//            CircularProgressIndicator(
+//                modifier = Modifier.align(Alignment.Center)
+//            )
+//        }
+//        state.errorMessage?.let {
+//            Text(
+//                text = it.toString(),
+//                textAlign = TextAlign.Center,
+//                color = Color.Red,
+//                modifier = Modifier.align(Alignment.Center)
+//            )
+//
+//        }
     }
-}
-
-@Preview
-@Composable
-fun ArticleDetailsScreenContentLoadingPreview() {
-    Surface(modifier = Modifier.fillMaxSize()) {
-        ArticleDetailsScreenContent(
-            ArticleDetailsState(
-                null,
-                true,
-                null
-            )
-        )
-    }
-
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -168,20 +168,6 @@ fun ArticleDetailsScreenContentSuccessPreview() {
                 ),
                 false,
                 null
-            )
-        )
-    }
-}
-
-@Preview
-@Composable
-fun ArticleDetailsScreenContentErrorPreview() {
-    Surface(modifier = Modifier.fillMaxSize()) {
-        ArticleDetailsScreenContent(
-            state = ArticleDetailsState(
-                null,
-                false,
-                UiText.DynamicString("error")
             )
         )
     }

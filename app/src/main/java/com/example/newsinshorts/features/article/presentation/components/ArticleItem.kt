@@ -25,7 +25,7 @@ import com.example.newsinshorts.features.article.domain.model.Article
 
 @Composable
 fun ArticleItem(
-    article: Article,
+    article: Article?,
     onArticleClick: (Int) -> Unit,
     modifier: Modifier = Modifier.height(80.dp)
 ) {
@@ -33,10 +33,10 @@ fun ArticleItem(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp)
-            .clickable { onArticleClick(article.id) }
+            .clickable { onArticleClick(article!!.id) }
     ) {
         AsyncImage(
-            model = article.imageUrl,
+            model = article!!.imageUrl,
             modifier = Modifier
                 .height(64.dp)
                 .width(83.dp)
@@ -52,15 +52,15 @@ fun ArticleItem(
             horizontalAlignment = Alignment.Start
         ) {
             Text(
-                text = article.title,
+                text = article!!.title,
                 style = MaterialTheme.typography.bodyLarge,
-                color = Color.DarkGray,
+                color = Color.LightGray,
                 maxLines = 2
             )
             Text(
-                text = article.publishedAt.toString(),
+                text = article!!.publishedAt.toString(),
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color.LightGray
+                color = Color.Gray
             )
         }
     }

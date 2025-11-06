@@ -4,6 +4,7 @@ hiltNavigationCompose = "1.3.0"
 kotlin = "2.2.20"
 coreKtx = "1.17.0"
 junit = "4.13.2"
+material3 = "1.4.0"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.9.4"
@@ -32,6 +33,9 @@ navigation = "2.9.5"
 #google fonts
 uiTextGoogleFonts = "1.7.5"
 
+#paging 3
+paging = "3.3.0"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -47,7 +51,7 @@ androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
 androidx-ui-android = { group = "androidx.compose.ui", name = "ui-android", version.ref = "uiAndroid" }
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
@@ -75,6 +79,12 @@ navigation-compose = { module = "androidx.navigation:navigation-compose", versio
 
 #google fonts
 androidx-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
+
+# paging 3
+androidx-paging-runtime-ktx = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "paging" }
+androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging" }
+
+compose-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

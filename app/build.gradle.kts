@@ -1,3 +1,5 @@
+import org.gradle.internal.impldep.org.jsoup.nodes.Entities
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -83,6 +85,13 @@ dependencies {
 
     // Google fonts
     implementation(libs.androidx.ui.text.google.fonts)
+
+    // paging
+    implementation(libs.androidx.paging.runtime.ktx)
+    implementation(libs.androidx.paging.compose)
+
+    implementation(libs.compose.icons.extended)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
