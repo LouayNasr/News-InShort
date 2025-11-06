@@ -1,7 +1,5 @@
 package com.example.newsinshorts.features.article.domain.model
 
-import java.time.LocalDateTime
-
 data class Article(
     val id: Int,
     val title: String,
@@ -9,7 +7,7 @@ data class Article(
     val url: String,
     val imageUrl: String,
     val summary: String,
-    val publishedAt: LocalDateTime,
+    val publishedAt: String,
 )
 
 data class Author(

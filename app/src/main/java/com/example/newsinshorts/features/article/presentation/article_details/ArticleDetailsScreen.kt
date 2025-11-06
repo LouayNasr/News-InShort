@@ -164,7 +164,7 @@ fun ArticleDetailsScreenContentSuccessPreview() {
                             "\n" +
                             "Educators choose to join Teacher Presence if it resonates with them. Everyone working on Teacher Presence volunteers their time, as 100% of all donations go directly to the teacher’s nominated charity.\n" +
                             "\n",
-                    LocalDateTime.now()
+                    "2015"
                 ),
                 false,
                 null

@@ -58,7 +58,7 @@ fun ArticleItem(
                 maxLines = 2
             )
             Text(
-                text = article!!.publishedAt.toString(),
+                text = article!!.publishedAt,
                 style = MaterialTheme.typography.bodyMedium,
                 color = Color.Gray
             )

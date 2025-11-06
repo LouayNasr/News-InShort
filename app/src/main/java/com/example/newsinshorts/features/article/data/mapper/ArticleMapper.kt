@@ -1,14 +1,16 @@
 package com.example.newsinshorts.features.article.data.mapper
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.newsinshorts.features.article.data.model.ArticleDTO
 import com.example.newsinshorts.features.article.data.model.AuthorDTO
-import com.example.newsinshorts.features.article.data.model.ArticlesListDTO
 import com.example.newsinshorts.features.article.domain.model.Article
 import com.example.newsinshorts.features.article.domain.model.Author
-import java.time.LocalDateTime
+import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 fun ArticleDTO.toArticle(): Article {
     return Article(
         id = id,
@@ -17,7 +19,7 @@ fun ArticleDTO.toArticle(): Article {
         url = url,
         imageUrl = imageUrl,
         summary = summary,
-        publishedAt = LocalDateTime.parse(publishedAt, DateTimeFormatter.ISO_DATE_TIME),
+        publishedAt = OffsetDateTime.parse(publishedAt).format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
     )
 }
 
