@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -27,13 +27,15 @@ import com.example.newsinshorts.features.article.domain.model.Article
 fun ArticleItem(
     article: Article?,
     onArticleClick: (Int) -> Unit,
-    modifier: Modifier = Modifier.height(80.dp)
+    modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp)
-            .clickable { onArticleClick(article!!.id) }
+            .height(96.dp)
+            .padding(vertical = 4.dp)
+            .clickable { onArticleClick(article!!.id) },
+        verticalAlignment = Alignment.CenterVertically
     ) {
         AsyncImage(
             model = article!!.imageUrl,
@@ -47,7 +49,8 @@ fun ArticleItem(
         Spacer(modifier = Modifier.width(16.dp))
         Column(
             modifier = Modifier
-                .fillMaxSize(),
+                .padding(vertical = 12.dp)
+                .fillMaxHeight(),
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.Start
         ) {
