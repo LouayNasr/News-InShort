@@ -27,7 +27,7 @@ class ArticleDetailsViewModel @Inject constructor(
         fetchArticleDetails(articleId)
     }
 
-    private fun fetchArticleDetails(id: Int) {
+    fun fetchArticleDetails(id: Int) {
         viewModelScope.launch {
             when (val result = getArticleDetailsUseCase(id)) {
                 is NetworkResult.Success -> {

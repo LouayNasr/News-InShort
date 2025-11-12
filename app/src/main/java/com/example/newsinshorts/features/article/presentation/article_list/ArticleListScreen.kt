@@ -84,7 +84,7 @@ fun ArticleListScreenContent(
     modifier: Modifier = Modifier
 ) {
     val isAppending = articles.loadState.append is LoadState.Loading
-    val error = (articles.loadState.append as? LoadState.Error)?.error
+    val isError = articles.loadState.append is LoadState.Error
 
     Box(
         modifier = modifier
@@ -104,7 +104,8 @@ fun ArticleListScreenContent(
                     if (isAppending) {
                         item { LoadingMoreItem() }
                     }
-                    if (error != null) {
+                    if (isError) {
+                        val error = (articles.loadState.append as LoadState.Error).error
                         item {
                             AppendErrorItem(
                                 message = error.localizedMessage ?: "Failed to load more",

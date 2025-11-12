@@ -53,8 +53,8 @@ fun ArticleDetailsScreen(
 
             state.isLoading -> LoadingScreen(modifier = Modifier.padding(paddingValues))
             state.errorMessage != null -> ErrorScreen(
-                state.errorMessage.toString(),
-                onRetry = { },
+                state.errorMessage.asString(),
+                onRetry = { viewModel.fetchArticleDetails(viewModel.articleId) },
                 modifier = Modifier.padding(paddingValues),
             )
 
@@ -100,7 +100,7 @@ fun ArticleDetailsScreenContent(
                 )
                 Spacer(modifier = Modifier.size(8.dp))
                 Text(
-                    text = it.publishedAt.toString(),
+                    text = it.publishedAt,
                     style = MaterialTheme.typography.labelLarge,
                     color = Color.DarkGray,
                     modifier = Modifier
@@ -117,20 +117,6 @@ fun ArticleDetailsScreenContent(
                 )
             }
         }
-//        if (state.isLoading) {
-//            CircularProgressIndicator(
-//                modifier = Modifier.align(Alignment.Center)
-//            )
-//        }
-//        state.errorMessage?.let {
-//            Text(
-//                text = it.toString(),
-//                textAlign = TextAlign.Center,
-//                color = Color.Red,
-//                modifier = Modifier.align(Alignment.Center)
-//            )
-//
-//        }
     }
 }
 
